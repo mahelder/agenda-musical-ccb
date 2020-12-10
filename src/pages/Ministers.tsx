@@ -48,10 +48,9 @@ class Ministers extends React.Component<{}, State> {
 
   loadVolunteers() {
     var ministers: {[k: string]: any} = {};
-    let cargos = ["encarregados-locais-franca", "encarregados-locais-regiao", "encarregados-regionais", "examinadoras"];
-    firebase.database().ref('/lista-telefones').on('value', (ref) => {
+    firebase.database().ref('/lista-telefones/musica').on('value', (ref) => {
       ref.forEach((cargo: any) => {
-        if (cargos.includes(cargo.key)) {
+        if (cargo.key !== "descricao"){
           ministers[cargo.key] = {"descricao": cargo.val()["descricao"], "voluntarios": []};
           cargo.forEach((voluntary: any) => {
             if(voluntary.val() !== cargo.val()["descricao"]){
