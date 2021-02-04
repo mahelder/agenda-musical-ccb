@@ -151,6 +151,10 @@ class ChurchDetails extends React.Component<{}, State> {
               </IonItemDivider>
 
               <IonItem>
+                <p>{this.state.church.code ? `Código: ${this.state.church.code}` : ""}</p>
+              </IonItem>
+
+              <IonItem>
                 <p>Cultos: {this.state.church.cults}</p>
               </IonItem>
 
