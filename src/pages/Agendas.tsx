@@ -16,11 +16,14 @@ import {
   IonRow,
   IonCol,
   IonButton,
+  IonIcon,
   IonLoading
 } from '@ionic/react';
 import firebase from 'firebase';
 import moment from 'moment';
 import './Agendas.css';
+import { close } from 'ionicons/icons';
+import { Plugins, Capacitor } from "@capacitor/core";
 
 const months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
 const monthsPtBr = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
@@ -97,6 +100,12 @@ class Agendas extends React.Component<{}, State> {
 
   }
 
+  closeApp() {
+    if (Capacitor.isNative) {
+      Plugins.App.exitApp();
+    }
+  }
+
   openModal(agenda: any){
     this.setState({open: true, details: agenda})
   }
@@ -142,6 +151,9 @@ class Agendas extends React.Component<{}, State> {
         <IonHeader>
           <IonToolbar>
             <IonTitle>Calendário {moment().year()}</IonTitle>
+            <IonButton slot="end" fill="clear" onClick={() => this.closeApp()}>
+              <IonIcon slot="icon-only" icon={close}></IonIcon>
+            </IonButton>
           </IonToolbar>
         </IonHeader>
         <IonContent>

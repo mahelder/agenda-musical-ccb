@@ -21,7 +21,8 @@ import firebase from 'firebase';
 import React from 'react';
 import './Churches.css';
 import ChurchesFilterModal from './ChurchesFilterModal';
-import { search } from 'ionicons/icons';
+import { search, close } from 'ionicons/icons';
+import { Plugins, Capacitor } from "@capacitor/core";
 
 type State = {
   churches: { [index: string]: any },
@@ -103,6 +104,12 @@ class Churches extends React.Component<any, State> {
     this.setState({ showModal: true });
   }
 
+  closeApp() {
+    if (Capacitor.isNative) {
+      Plugins.App.exitApp();
+    }
+  }
+
   search(filters: any) {
     let churches = this.state.churches;
     let churchesShown: { [index: string]: any } = {};
@@ -131,6 +138,9 @@ class Churches extends React.Component<any, State> {
               <IonIcon slot="icon-only" icon={search}></IonIcon>
             </IonButton>
             <IonTitle>Franca-SP e Região</IonTitle>
+            <IonButton slot="end" fill="clear" onClick={() => this.closeApp()}>
+              <IonIcon slot="icon-only" icon={close}></IonIcon>
+            </IonButton>
           </IonToolbar>
         </IonHeader>
 

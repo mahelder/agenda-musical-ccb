@@ -12,10 +12,14 @@ import {
   IonItemDivider,
   IonLoading,
   IonSearchbar,
+  IonButton,
+  IonIcon,
   withIonLifeCycle
 } from '@ionic/react';
 import firebase from 'firebase';
 import MinisterDetails from './MinisterDetails';
+import { close } from 'ionicons/icons';
+import { Plugins, Capacitor } from "@capacitor/core";
 
 type State = {
   ministers: { [index: string]: any },
@@ -93,6 +97,12 @@ class Ministers extends React.Component<{}, State> {
     this.setState({ actives });
   }
 
+  closeApp() {
+    if (Capacitor.isNative) {
+      Plugins.App.exitApp();
+    }
+  }
+
   createList() {
     let html = []
     let ministers = this.state.ministersShown;
@@ -148,6 +158,9 @@ class Ministers extends React.Component<{}, State> {
         <IonHeader>
           <IonToolbar>
             <IonTitle>Lista Telefônica</IonTitle>
+            <IonButton slot="end" fill="clear" onClick={() => this.closeApp()}>
+              <IonIcon slot="icon-only" icon={close}></IonIcon>
+            </IonButton>
           </IonToolbar>
         </IonHeader>
         <IonContent>
