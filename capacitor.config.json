@@ -5,5 +5,5 @@
   "npmClient": "npm",
   "webDir": "build",
   "cordova": {},
-  "linuxAndroidStudioPath": "/home/mahelder/Documentos/dev/android-studio/bin/studio.sh"
+  "linuxAndroidStudioPath": "/home/mahelder/Documentos/android-studio-2022.3.1.21-linux/android-studio/bin/studio.sh"
 }
